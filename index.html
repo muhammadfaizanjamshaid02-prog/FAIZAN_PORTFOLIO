@@ -170,7 +170,7 @@ section{padding:clamp(76px,8vw,110px) clamp(20px,6vw,90px);max-width:1180px;marg
 /* practice lab (supporting set) */
 .lab-head{margin-bottom:40px}
 .lab-head .section-title{color:#ffe3ee}
-.qa-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.qa-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:16px}
 .qa-lab-item{background:rgba(255,255,255,.043);border:1px solid rgba(248,207,224,.12);border-radius:16px;padding:26px 22px;transition:.3s}
 .qa-lab-item:hover{transform:translateY(-5px);border-color:rgba(242,85,143,.45)}
 .qa-lab-item .ic{font-size:1.7rem;margin-bottom:12px;display:block}
@@ -194,7 +194,7 @@ section{padding:clamp(76px,8vw,110px) clamp(20px,6vw,90px);max-width:1180px;marg
 .project-links{display:flex;gap:16px}
 .project-links a{color:var(--accent-light);font-weight:600;text-decoration:none;font-size:.92rem;transition:.25s}
 .project-links a:hover{color:#fff}
-.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:20px}
 .project-card{background:var(--card);border:1px solid var(--card-border);border-radius:18px;padding:28px;transition:.3s;display:flex;flex-direction:column}
 .project-card.hide{display:none}
 .project-card:hover{transform:translateY(-6px);border-color:rgba(242,85,143,.45)}
@@ -206,7 +206,7 @@ section{padding:clamp(76px,8vw,110px) clamp(20px,6vw,90px);max-width:1180px;marg
 .projects-toggle a:hover{background:var(--accent);color:#fff;transform:translateY(-3px)}
 
 /* education */
-.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;margin-bottom:50px}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:18px;margin-bottom:50px}
 .edu-card{background:var(--card);border:1px solid var(--card-border);border-radius:18px;padding:30px;transition:.3s}
 .edu-card:hover{transform:translateY(-5px)}
 .edu-card .deg{font-family:var(--fd);font-weight:700;font-size:1.15rem;margin-bottom:4px}
@@ -214,7 +214,7 @@ section{padding:clamp(76px,8vw,110px) clamp(20px,6vw,90px);max-width:1180px;marg
 .edu-meta{color:#888;font-size:.85rem}
 .edu-grade{display:inline-block;margin-top:14px;font-size:.8rem;font-weight:600;color:var(--green);background:rgba(76,175,80,.12);border:1px solid rgba(76,175,80,.3);padding:5px 15px;border-radius:100px}
 .subsection-title{font-family:var(--fd);font-size:1.4rem;font-weight:700;margin-bottom:22px}
-.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:18px}
 .cert-card{background:var(--card);border:1px solid var(--card-border);border-radius:18px;padding:28px;display:flex;gap:18px;align-items:flex-start;transition:.3s}
 .cert-card:hover{transform:translateY(-5px)}
 .cert-ic{flex:0 0 52px;height:52px;border-radius:14px;background:var(--accent-soft);border:1px solid rgba(242,85,143,.3);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
@@ -228,7 +228,7 @@ section{padding:clamp(76px,8vw,110px) clamp(20px,6vw,90px);max-width:1180px;marg
 /* resume */
 .resume-summary{background:var(--card);border:1px solid var(--card-border);border-radius:18px;padding:32px;margin-bottom:30px}
 .resume-summary h3{font-family:var(--fd);font-size:1.25rem;margin-bottom:14px;color:#f7edf3}
-.snap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:26px}
+.snap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:12px;margin-bottom:26px}
 .snap-grid div{background:rgba(242,85,143,.06);border:1px solid rgba(242,85,143,.16);border-radius:12px;padding:15px;font-size:.88rem;color:var(--muted)}
 .snap-grid b{color:var(--accent-light);display:block;font-family:var(--fd);margin-bottom:2px}
 .resume-actions{display:flex;gap:14px;flex-wrap:wrap}
@@ -357,6 +357,9 @@ body[data-theme="porcelain"] .typed-line,body[data-theme="arctic"] .typed-line{c
 
 /* print: resume only */
 /* ============ RESPONSIVE: every device ============ */
+main p,main li,main a,main span,footer p,footer a{overflow-wrap:break-word}
+img,svg,video{max-width:100%;height:auto}
+
 html{-webkit-text-size-adjust:100%}
 @media(min-width:1400px){
   section,#home{max-width:1280px}
