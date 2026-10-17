@@ -369,12 +369,11 @@ body[data-theme="porcelain"] .typed-line,body[data-theme="arctic"] .typed-line{c
 
 /* print: resume only */
 .fyp-badge{display:inline-block;align-self:flex-start;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(242,85,143,.12);color:var(--accent-light);border:1px solid rgba(242,85,143,.35);padding:5px 12px;border-radius:999px;margin-bottom:12px}
-/* touch GPUs: same look, cheaper rendering.
-   (hover:none) catches phones in 'Desktop site' mode too (they report ~980px width).
-   driftT = drift without scale (no re-rasterization); navbar keeps its centering */
-@keyframes driftT{from{transform:translate(0,0)}to{transform:translate(70px,50px)}}
+/* touch GPUs: ambient background goes static (zero per-frame cost) so the page stops shaking;
+   hero animations (ring spin, photo float, chip, typewriter) keep running exactly as before.
+   (hover:none) catches phones in 'Desktop site' mode too (they report ~980px width) */
 @media(max-width:900px),(hover:none){
-  .blob{filter:blur(90px);animation-name:driftT}
+  .blob{filter:blur(90px);animation:none;will-change:auto}
 }
 @media(min-width:901px) and (hover:none){
   .navbar{transform:translateX(-50%) translateZ(0)}
