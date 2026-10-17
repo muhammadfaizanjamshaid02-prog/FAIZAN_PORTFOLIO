@@ -82,7 +82,7 @@ section{padding:clamp(76px,8vw,110px) clamp(20px,6vw,90px);max-width:1180px;marg
 #home{min-height:100vh;display:flex;align-items:center;max-width:1180px;padding-top:130px}
 #home{flex-direction:column;justify-content:center;align-items:stretch}
 #home>.stats-section{width:100%}
-#home{min-height:100dvh} /* dvh > vh: no jump on mobile browser chrome */
+#home{min-height:100dvh}
 @media(max-width:900px){#home{justify-content:flex-start}} /* stats stack below hero, no squeeze */
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,60px);align-items:center;width:100%}
 .hero-badge{display:inline-flex;align-items:center;gap:10px;padding:9px 20px;border-radius:100px;font-size:.86rem;font-weight:600;
@@ -121,7 +121,7 @@ section{padding:clamp(76px,8vw,110px) clamp(20px,6vw,90px);max-width:1180px;marg
 .photo-chip{position:absolute;bottom:6px;left:50%;transform:translateX(-50%) rotate(-2deg);white-space:nowrap;
   background:rgba(30,30,30,.94);border:1px solid rgba(215,135,163,.35);color:var(--accent-light);
   font-weight:600;font-size:.85rem;padding:10px 22px;border-radius:100px;box-shadow:0 12px 30px rgba(0,0,0,.5)}
-@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-photo-wrap{order:-1}}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-photo-wrap{order:-1}.hero-photo{width:min(240px,62vw)}}
 
 /* stats */
 .stats-section{margin-top:64px;background:rgba(215,135,163,.03);border:1px solid rgba(215,135,163,.08);border-radius:22px;padding:38px 30px}
@@ -377,14 +377,10 @@ body[data-theme="porcelain"] .typed-line,body[data-theme="arctic"] .typed-line{c
 
 /* print: resume only */
 .fyp-badge{display:inline-block;align-self:flex-start;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(242,85,143,.12);color:var(--accent-light);border:1px solid rgba(242,85,143,.35);padding:5px 12px;border-radius:999px;margin-bottom:12px}
-/* calm mobile: freeze every infinite animation so nothing moves on its own */
+/* mobile: ring spin + bg blobs stay static (they rendered as shaky 'auto-rotate' on phones);
+   photo float, chip, caret, typewriter keep animating exactly like desktop */
 @media(max-width:640px){
-  .blob,.hero-photo-wrap,.hero-photo-wrap::before,.photo-chip,.caret,.dl-arrow{animation:none!important}
-}
-/* stop navbar shimmer on mobile: solid bg instead of backdrop-blur over animated blobs */
-@media(max-width:900px){
-  .navbar{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(30,30,30,.96)}
-  body[data-theme="porcelain"] .navbar,body[data-theme="arctic"] .navbar{background:rgba(255,255,255,.97)}
+  .blob,.hero-photo-wrap::before{animation:none!important}
 }
 /* ============ RESPONSIVE: every device ============ */
 main p,main li,main a,main span,footer p,footer a{overflow-wrap:break-word}
@@ -404,6 +400,7 @@ html{-webkit-text-size-adjust:100%}
   section{padding-left:16px;padding-right:16px}
   .typed-line{min-height:3.4em} /* room for wrapped typewriter text on phones */
   .hero-name{font-size:clamp(2rem,11vw,2.6rem)}
+  .hero-photo{width:min(220px,60vw)}
   .photo-chip{font-size:.72rem;padding:8px 16px;max-width:94%}
   .stat-number{font-size:1.9rem}
   .section-title{font-size:clamp(1.55rem,7vw,1.9rem)}
@@ -825,12 +822,11 @@ setTimeout(() => document.getElementById('loader').classList.add('done'), 3000);
 (() => {
   const words = ['Full-Stack Web Apps.','REST APIs.','Responsive UIs.','Clean Code.'];
   const el = document.getElementById('typed'); if(!el) return;
-  const calm = window.matchMedia('(max-width:640px)').matches;
   let wi = 0, ci = 0, del = false;
   (function tick(){
     const w = words[wi];
     el.textContent = w.slice(0, ci);
-    if(!del){ ci++; if(ci > w.length){ if(calm) return; del = true; return setTimeout(tick, 1500); } }
+    if(!del){ ci++; if(ci > w.length){ del = true; return setTimeout(tick, 1500); } }
     else { ci--; if(ci === 0){ del = false; wi = (wi+1) % words.length; } }
     setTimeout(tick, del ? 36 : 70);
   })();
