@@ -377,11 +377,6 @@ body[data-theme="porcelain"] .typed-line,body[data-theme="arctic"] .typed-line{c
 
 /* print: resume only */
 .fyp-badge{display:inline-block;align-self:flex-start;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(242,85,143,.12);color:var(--accent-light);border:1px solid rgba(242,85,143,.35);padding:5px 12px;border-radius:999px;margin-bottom:12px}
-/* mobile: ring spin + bg blobs stay static (they rendered as shaky 'auto-rotate' on phones);
-   photo float, chip, caret, typewriter keep animating exactly like desktop */
-@media(max-width:640px){
-  .blob,.hero-photo-wrap::before{animation:none!important}
-}
 /* ============ RESPONSIVE: every device ============ */
 main p,main li,main a,main span,footer p,footer a{overflow-wrap:break-word}
 img,svg,video{max-width:100%;height:auto}
