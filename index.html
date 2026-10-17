@@ -82,6 +82,7 @@ section{padding:clamp(76px,8vw,110px) clamp(20px,6vw,90px);max-width:1180px;marg
 #home{min-height:100vh;display:flex;align-items:center;max-width:1180px;padding-top:130px}
 #home{flex-direction:column;justify-content:center;align-items:stretch}
 #home>.stats-section{width:100%}
+#home{min-height:100dvh} /* dvh > vh: no jump on mobile browser chrome */
 @media(max-width:900px){#home{justify-content:flex-start}} /* stats stack below hero, no squeeze */
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,60px);align-items:center;width:100%}
 .hero-badge{display:inline-flex;align-items:center;gap:10px;padding:9px 20px;border-radius:100px;font-size:.86rem;font-weight:600;
@@ -376,6 +377,10 @@ body[data-theme="porcelain"] .typed-line,body[data-theme="arctic"] .typed-line{c
 
 /* print: resume only */
 .fyp-badge{display:inline-block;align-self:flex-start;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(242,85,143,.12);color:var(--accent-light);border:1px solid rgba(242,85,143,.35);padding:5px 12px;border-radius:999px;margin-bottom:12px}
+/* calm mobile: freeze every infinite animation so nothing moves on its own */
+@media(max-width:640px){
+  .blob,.hero-photo-wrap,.hero-photo-wrap::before,.photo-chip,.caret,.dl-arrow{animation:none!important}
+}
 /* stop navbar shimmer on mobile: solid bg instead of backdrop-blur over animated blobs */
 @media(max-width:900px){
   .navbar{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(30,30,30,.96)}
@@ -820,11 +825,12 @@ setTimeout(() => document.getElementById('loader').classList.add('done'), 3000);
 (() => {
   const words = ['Full-Stack Web Apps.','REST APIs.','Responsive UIs.','Clean Code.'];
   const el = document.getElementById('typed'); if(!el) return;
+  const calm = window.matchMedia('(max-width:640px)').matches;
   let wi = 0, ci = 0, del = false;
   (function tick(){
     const w = words[wi];
     el.textContent = w.slice(0, ci);
-    if(!del){ ci++; if(ci > w.length){ del = true; return setTimeout(tick, 1500); } }
+    if(!del){ ci++; if(ci > w.length){ if(calm) return; del = true; return setTimeout(tick, 1500); } }
     else { ci--; if(ci === 0){ del = false; wi = (wi+1) % words.length; } }
     setTimeout(tick, del ? 36 : 70);
   })();
