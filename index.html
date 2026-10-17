@@ -314,6 +314,7 @@ img{max-width:100%}
 body[data-theme="porcelain"]{--bg:#fdf9f7;--card:#ffffff;--text:#251b23;--muted:#6f5f6b;--accent:#e0447c;--accent-light:#c2265e;--accent-soft:rgba(224,68,124,.1);--card-border:rgba(224,68,124,.2)}
 body[data-theme="arctic"]{--bg:#f4f9ff;--card:#ffffff;--text:#0f1f38;--muted:#5a6b85;--accent:#2563eb;--accent-light:#1d4ed8;--accent-soft:rgba(37,99,235,.1);--card-border:rgba(37,99,235,.2)}
 body[data-theme="porcelain"],body[data-theme="arctic"]{background:radial-gradient(1100px 750px at 85% -5%,color-mix(in srgb,var(--accent) 9%,transparent) 0%,transparent 60%),linear-gradient(180deg,#ffffff,var(--bg));background-attachment:fixed}
+body[data-theme="sunset"]{--bg:#181008;--card:#231710;--text:#f8f1e6;--muted:#bfae97;--accent:#ff7b24;--accent-light:#ffc79a;--accent-soft:rgba(255,123,36,.12);--card-border:rgba(255,180,120,.18);background:radial-gradient(1100px 750px at 85% -5%,rgba(255,123,36,.13) 0%,transparent 60%),radial-gradient(950px 700px at 8% 18%,rgba(150,80,255,.1) 0%,transparent 55%),linear-gradient(180deg,#1e130a,#120c07);background-attachment:fixed}
 body[data-theme="porcelain"] .blob,body[data-theme="arctic"] .blob{opacity:.13}
 body[data-theme="porcelain"] .navbar,body[data-theme="arctic"] .navbar{background:rgba(255,255,255,.9)}
 body[data-theme="porcelain"] .nav-links a,body[data-theme="arctic"] .nav-links a{color:var(--muted)}
@@ -828,9 +829,9 @@ setTimeout(() => document.getElementById('loader').classList.add('done'), 3000);
 /* theme switcher */
 (() => {
   const btn = document.getElementById('themeBtn');
-  const order = ['midnight','porcelain','arctic'];
-  const icons = {midnight:'\uD83C\uDF19',porcelain:'\uD83C\uDF38',arctic:'\u2744\uFE0F'};
-  const names = {midnight:'Midnight Rose',porcelain:'Porcelain Light',arctic:'Arctic Blue'};
+  const order = ['midnight','porcelain','arctic','sunset'];
+  const icons = {midnight:'\uD83C\uDF19',porcelain:'\uD83C\uDF38',arctic:'\u2744\uFE0F',sunset:'\uD83C\uDF07'};
+  const names = {midnight:'Midnight Rose',porcelain:'Porcelain Light',arctic:'Arctic Blue',sunset:'Sunset Ember'};
   function apply(t){
     if(t==='midnight') document.body.removeAttribute('data-theme');
     else document.body.dataset.theme = t;
