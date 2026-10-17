@@ -109,10 +109,10 @@ section{padding:clamp(76px,8vw,110px) clamp(20px,6vw,90px);max-width:1180px;marg
 .hero-skill-tag{font-size:.82rem;font-weight:500;padding:8px 16px;border-radius:100px;border:1px solid rgba(215,135,163,.3);color:var(--accent-light);background:rgba(242,85,143,.05);transition:.25s}
 .hero-skill-tag:hover{background:var(--accent);color:#fff;transform:translateY(-2px)}
 .hero-photo-wrap{position:relative;display:flex;justify-content:center;padding:7px;will-change:transform;animation:floaty 6s ease-in-out infinite;width:fit-content;max-width:100%;justify-self:center;align-self:center}
-.hero-photo-wrap::before{content:"";position:absolute;inset:0;border-radius:40px;padding:7px;
+.hero-photo-wrap::before{content:"";position:absolute;inset:-14px;border-radius:46px;padding:7px;
   background:conic-gradient(from 0deg,#f2558f,#7b4dff,#22d3ee,#ffd6e5,#f2558f);
   -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;animation:spin 6s linear infinite;pointer-events:none}
+  -webkit-mask-composite:xor;mask-composite:exclude;animation:spin 6s linear infinite;pointer-events:none;z-index:-1}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 .hero-photo{width:min(320px,78vw);aspect-ratio:4/5;object-fit:cover;border-radius:33px;display:block;
